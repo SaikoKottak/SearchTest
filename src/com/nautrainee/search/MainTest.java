@@ -1,5 +1,6 @@
 package com.nautrainee.search;
 
+import com.nautrainee.search.Main;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 public class MainTest {
 
     @Test
-    public void makeAlphabet(){
+    public void makeAlphabet() {
         char[] chars = Main.makeAlphabet();
         System.out.println(Arrays.asList(chars).stream()
                 .map(Object::toString)

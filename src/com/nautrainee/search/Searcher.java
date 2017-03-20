@@ -8,11 +8,11 @@ public class Searcher implements ISearcher {
 
     @Override
     public void refresh(String[] classNames, long[] modificationDates) {
-        if(classNames.length != modificationDates.length) {
+        if (classNames.length != modificationDates.length) {
             throw new IllegalArgumentException("Length of arrays isn't equals.");
         }
         tree = new SearchTree();
-        for(int i=0;i<classNames.length;i++) {
+        for (int i = 0; i < classNames.length; i++) {
             tree.add(new ClassFile(classNames[i], modificationDates[i]));
         }
         tree.fill();
