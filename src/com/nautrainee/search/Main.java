@@ -1,19 +1,21 @@
 package com.nautrainee.search;
 
+
 public class Main {
 
-    public static final int N = 10;
+    public static final int N = 13;
 
     public static void main(String[] args) {
         long[] dates = new long[N];
-        String[] names = new String[]{"a", "b", "c", "ab", "abc", "cab", "bac", "eof", "fos", "aab"};
+        String[] names = new String[]{"aa", "ab", "ac", "ad", "ba", "bd", "bc", "bda", "bda1", "ca", "cb", "cba", "bcad"};
         for (int i = 0; i < N; i++) {
             dates[i] = i;
         }
         Searcher searcher = new Searcher();
         searcher.refresh(names, dates);
-        String[] result = searcher.guess("b");
-        for(String word : result) {
+
+        String[] result = searcher.guess("bd");
+        for (String word : result) {
             System.out.println(word);
         }
     }

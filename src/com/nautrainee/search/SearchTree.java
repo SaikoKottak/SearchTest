@@ -24,9 +24,8 @@ public class SearchTree {
         if (suffix == null || suffix.isEmpty()) {
             classes.add(classFile);
             return;
-        } else {
-            classes.add(classFile);
         }
+
         Character letter = suffix.charAt(0);
         String tail = suffix.substring(1, suffix.length());
         if (!children.containsKey(letter)) {
@@ -46,8 +45,6 @@ public class SearchTree {
         classes = merge(children.values().stream()
                 .map(SearchTree::getClasses)
                 .collect(Collectors.toList()));
-
-
     }
 
     private List<ClassFile> merge(Collection<List<ClassFile>> lists) {
@@ -76,7 +73,7 @@ public class SearchTree {
         return merge(res);
     }
 
-    private List<ClassFile> merge(List<ClassFile> first, List<ClassFile> second) {
+    protected List<ClassFile> merge(List<ClassFile> first, List<ClassFile> second) {
         List<ClassFile> res = new ArrayList<>(first.size() + second.size());
         Iterator<ClassFile> firstIterator = first.iterator();
         Iterator<ClassFile> secondIterator = second.iterator();
@@ -94,6 +91,7 @@ public class SearchTree {
                 if (firstIterator.hasNext()) {
                     firstValue = firstIterator.next();
                 } else {
+                    res.add(secondValue);
                     return addAll(res, secondIterator);
                 }
             } else {
@@ -101,6 +99,7 @@ public class SearchTree {
                 if (secondIterator.hasNext()) {
                     secondValue = secondIterator.next();
                 } else {
+                    res.add(firstValue);
                     return addAll(res, firstIterator);
                 }
             }
@@ -124,6 +123,6 @@ public class SearchTree {
         if (child == null) {
             return Collections.emptyList();
         }
-        return get(tail);
+        return child.get(tail);
     }
 }

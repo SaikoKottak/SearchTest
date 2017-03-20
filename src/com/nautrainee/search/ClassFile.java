@@ -1,6 +1,5 @@
 package com.nautrainee.search;
 
-import com.sun.istack.internal.NotNull;
 
 public class ClassFile implements Comparable<ClassFile> {
     public final String className;
@@ -31,9 +30,9 @@ public class ClassFile implements Comparable<ClassFile> {
     }
 
     @Override
-    public int compareTo(@NotNull ClassFile o) {
+    public int compareTo(ClassFile o) {
         if (modificationDate != o.modificationDate) {
-            return Long.compare(o.modificationDate,modificationDate);
+            return Long.compare(o.modificationDate, modificationDate);
         } else if (className == null) {
             return o.className == null ? 0 : 1;
         } else {

@@ -1,5 +1,6 @@
 package com.nautrainee.search;
 
+import com.nautrainee.search.Searcher;
 import org.junit.Test;
 
 public class SearcherTest {
