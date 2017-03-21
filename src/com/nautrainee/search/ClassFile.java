@@ -1,6 +1,5 @@
 package com.nautrainee.search;
 
-
 public class ClassFile implements Comparable<ClassFile> {
     public final String className;
     public final long modificationDate;

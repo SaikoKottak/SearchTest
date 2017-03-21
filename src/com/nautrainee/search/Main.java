@@ -1,40 +1,39 @@
 package com.nautrainee.search;
 
-
 public class Main {
 
-    public static final int N = 13;
+    public static final int N = 100_000;
 
     public static void main(String[] args) {
         long[] dates = new long[N];
-        String[] names = new String[]{"aa", "ab", "ac", "ad", "ba", "bd", "bc", "bda", "bda1", "ca", "cb", "cba", "bcad"};
+        String[] names = new String[N];
+
         for (int i = 0; i < N; i++) {
             dates[i] = i;
+            names[i] = makeString(32);
         }
         Searcher searcher = new Searcher();
+        long startTime = System.currentTimeMillis();
         searcher.refresh(names, dates);
-
-        String[] result = searcher.guess("bd");
-        for (String word : result) {
-            System.out.println(word);
+        long refreshTime = System.currentTimeMillis();
+        String[] result = searcher.guess("");
+        for (String className : result) {
+            System.out.println(className);
         }
+        long guessTime = System.currentTimeMillis();
+
+        System.out.println("Refresh time is " + (refreshTime - startTime));
+        System.out.println("Guess time is " + (guessTime - refreshTime));
     }
 
-    private static String iToString(int i) {
-        return null;
+    public static String makeString(int maxLength) {
+        String symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder randString = new StringBuilder();
+        int count = (int) (Math.random() * maxLength);
+        for (int i = 0; i < count; i++)
+            randString.append(symbols.charAt((int) (Math.random() * symbols.length())));
+
+        return randString.toString();
     }
 
-    public static char[] makeAlphabet() {
-        char[] chars = new char[62];
-        for (int i = 0; i < 26; i++) {
-            chars[i] = (char) ('a' + i);
-        }
-        for (int i = 0; i < 26; i++) {
-            chars[i + 26] = (char) ('A' + i);
-        }
-        for (int i = 0; i < 10; i++) {
-            chars[i + 52] = (char) ('1' + i);
-        }
-        return chars;
-    }
 }

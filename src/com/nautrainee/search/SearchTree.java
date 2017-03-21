@@ -42,9 +42,14 @@ public class SearchTree {
         }
 
         children.values().forEach(SearchTree::fill);
-        classes = merge(children.values().stream()
+        List<ClassFile> childrenClasses = merge(children.values().stream()
                 .map(SearchTree::getClasses)
                 .collect(Collectors.toList()));
+        if (classes.isEmpty()) {
+            classes = childrenClasses;
+        } else {
+            classes = merge(classes, childrenClasses);
+        }
     }
 
     private List<ClassFile> merge(Collection<List<ClassFile>> lists) {
